@@ -19,6 +19,7 @@ function trataErro(erro) {
 }
 
 //código para acessar as informações dos links
+//transformamos o código em assíncrono pois não sabemos o tamanho do arquivo
 function pegaArquivo(caminhoDoArquivo){
   const encoding = 'utf-8';
   fs.promises.readFile(caminhoDoArquivo, encoding) 
@@ -26,5 +27,4 @@ function pegaArquivo(caminhoDoArquivo){
     .catch(trataErro)
 }
 
-//transformamos o código em assíncrono pois não sabemos o tamanho do arquivo
 pegaArquivo('./arquivo/texto.md')
