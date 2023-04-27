@@ -8,7 +8,9 @@
     "node": ">=16.x"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cli": "node ./src/cli.js ./arquivo/texto.md",
+    "cli:valida": "node ./src/cli.js ./arquivo/texto.md --valida"
   },
   "repository": {
     "type": "git",
