@@ -1,8 +1,7 @@
 // import chalk from 'chalk';
 // lista que só tenha urls
 function extraiLinks(arrLinks) {
-  // loop do array
-  return arrLinks.map((objetoLink) => Object.values(objetoLink).join());
+  return arrLinks.map((objetoLink) => objetoLink.href);
 }
 
 function manejaErros(erro) {
@@ -13,15 +12,21 @@ function manejaErros(erro) {
 }
 
 function checkStatus(listaURLs) {
-  const arrStatus = Promise
-    .all(
-      listaURLs.map((url) => fetch(url)
-        .then((response) => `${response.status} - ${response.statusText}`)
-        .catch((erro) => manejaErros(erro))),
-    );
+  const arrStatus = Promise.all(
+    listaURLs.map((url) => fetch(url)
+      .then((response) => {
+        if (response.status === 200) {
+          return `${response.status} | ${'OK'}`;
+        }
+        if (response.status === 404) {
+          return `${response.status} | ${'FAIL'}`;
+        }
+        return `${response.status} - ${response.statusText}`;
+      })
+      .catch((erro) => manejaErros(erro))),
+  );
   return arrStatus;
 }
-
 
 export default function listaValidada(listaDeLinks) {
   const links = extraiLinks(listaDeLinks);
