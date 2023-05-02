@@ -1,29 +1,31 @@
+#!/usr/bin/env node
 import fs from 'fs';
-import chalk from 'chalk';
-import pegaArquivo from './index.js';
+// import chalk from 'chalk';
+import extraiLinks from './index.js';
 import listaValidada from './http-validacao.js';
 
 const caminho = process.argv;
 
-async function imprimeLista(valida, resultado, identificador = '') {
+async function imprimeLista(valida, resultado) {
   if (valida) {
-    console.log(
-      chalk.yellow('lista validada'),
-      chalk.black.bgGreen(identificador),
-      await listaValidada(resultado),
-    );
+    const linha = await listaValidada(resultado);
+    linha.forEach((link) => {
+      console.log(
+        `${link.file} | ${link.href} | ${link.text} | ${link.status}`,
+      );
+    });
   } else {
-    console.log(
-      chalk.yellow('lista de links'),
-      chalk.black.bgGreen(identificador),
-      resultado,
-    );
+    resultado.forEach((link) => {
+      console.log(
+        `${link.file} | ${link.href} | ${link.text}`,
+      );
+    });
   }
 }
 
 function processaTexto(argumentos) {
   const caminhoArgumento = argumentos[2];
-  const valida = argumentos[3] === '--valida';
+  const valida = argumentos[3] === '--validate';
 
   try {
     fs.lstatSync(caminhoArgumento);
@@ -34,7 +36,7 @@ function processaTexto(argumentos) {
     }
   }
   if (fs.lstatSync(caminhoArgumento).isFile()) {
-    pegaArquivo(argumentos[2])
+    extraiLinks(argumentos[2])
       .then((resultado) => {
         imprimeLista(valida, resultado);
       })
@@ -46,7 +48,7 @@ function processaTexto(argumentos) {
     fs.promises.readdir(caminho)
       .then((arquivos) => {
         arquivos.forEach((nomeDeArquivo) => {
-          pegaArquivo(`${caminho}/${nomeDeArquivo}`)
+          extraiLinks(`${caminho}/${nomeDeArquivo}`)
             .then((lista) => {
               imprimeLista(valida, lista, nomeDeArquivo);
             });

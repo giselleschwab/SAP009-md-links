@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "md-links-giselleschwab",
   "version": "0.1.0",
   "description": "Md Links - Projeto Laboratoria",
   "main": "index.js",
@@ -7,12 +7,12 @@
   "engines": {
     "node": ">=16.x"
   },
+  "bin": {
+    "md-links": "./src/cli.js"
+    },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cli": "node ./src/cli.js ./arquivo/texto.md",
-    "cli:valida": "node ./src/cli.js ./arquivo/texto.md --valida",
-    "eslint": "eslint --fix --ext .js src/"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1"
+},
   "repository": {
     "type": "git",
     "url": "https://github.com/giselleschwab/SAP009-md-links"
