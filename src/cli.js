@@ -2,17 +2,26 @@
 import fs from 'fs';
 // import chalk from 'chalk';
 import extraiLinks from './index.js';
-import listaValidada from './http-validacao.js';
+import { listaValidada, statusBroken } from './http-validacao.js';
 
 const caminho = process.argv;
 
-async function imprimeLista(valida, resultado) {
-  if (valida) {
-    const linha = await listaValidada(resultado);
-    linha.forEach((link) => {
-      console.log(
-        `${link.file} | ${link.href} | ${link.text} | ${link.status}`,
-      );
+function imprimeLista(valida, resultado) {
+  if (caminho.includes('--stats') && caminho.includes('--validate')) {
+    statusBroken(resultado).then((linksQuebrados) => {
+      console.log(`links quebrados: ${linksQuebrados.length}`);
+    });
+  } else if (caminho.includes('--stats')) {
+    const linksUnicos = new Set(resultado.map((link) => link.href));
+    console.log(`total de links: ${resultado.length}`);
+    console.log(`links únicos: ${linksUnicos.size}`);
+  } else if (valida) {
+    listaValidada(resultado).then((linha) => {
+      linha.forEach((link) => {
+        console.log(
+          `${link.file} | ${link.href} | ${link.text} | ${link.status}`,
+        );
+      });
     });
   } else {
     resultado.forEach((link) => {

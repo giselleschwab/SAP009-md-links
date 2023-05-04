@@ -1,7 +1,7 @@
-// const mdLinks = require('..');
+import { extraiLinks } from '../src';
 
-// describe('mdLinks', () => {
-//   it('should...', () => {
-//     console.log('FIX ME!');
-//   });
-// });
+describe('extraiLinks', () => {
+  it('É uma função', () => {
+    expect(typeof extraiLinks).toBe('function');
+  });
+});
