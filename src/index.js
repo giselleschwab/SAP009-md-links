@@ -1,8 +1,8 @@
 import fs from 'fs';
-import chalk from 'chalk';
+// import chalk from 'chalk';
 
 function trataErro(erro) {
-  throw new Error(chalk.red(erro.code, 'não há arquivo no diretório'));
+  throw new Error(erro.code, 'não há arquivo no diretório');
 }
 
 export default function extraiLinks(caminhoDoArquivo) {
