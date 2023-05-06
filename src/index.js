@@ -1,11 +1,11 @@
+import chalk from 'chalk';
 import fs from 'fs';
-// import chalk from 'chalk';
 
 function trataErro(erro) {
-  throw new Error(erro.code, 'não há arquivo no diretório');
+  throw new Error(chalk.red(erro.code, 'não há arquivo no diretório'));
 }
 
-export default function extraiLinks(caminhoDoArquivo) {
+function extraiLinks(caminhoDoArquivo) {
   const encoding = 'utf-8';
   const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)/gm;
 
@@ -20,5 +20,7 @@ export default function extraiLinks(caminhoDoArquivo) {
       }));
       return resultados;
     })
-    .catch(trataErro);
+    .catch((erro) => trataErro(erro));
 }
+
+export { extraiLinks, trataErro };

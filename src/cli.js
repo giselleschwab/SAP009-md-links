@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import fs from 'fs';
 import chalk from 'chalk';
-import extraiLinks from './index.js';
-import { listaValidada, calculaStats } from './http-validacao.js';
+import { extraiLinks } from './index.js';
+import { listaValidada, calculaStats } from './validate-stats.js';
 
 const caminho = process.argv;
 
@@ -74,3 +74,5 @@ function processaTexto(argumentos) {
 }
 
 processaTexto(caminho);
+
+export { imprimeLista, processaTexto };
