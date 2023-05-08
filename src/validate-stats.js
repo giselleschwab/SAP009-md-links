@@ -50,4 +50,4 @@ function listaValidada(listaDeLinks) {
   })));
 }
 
-export { listaValidada, calculaStats };
+export { checkStatus, listaValidada, calculaStats };

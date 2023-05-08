@@ -1,25 +1,22 @@
-#!/usr/bin/env node
 import fs from 'fs';
 import chalk from 'chalk';
-import { extraiLinks } from './index.js';
+import { extraiLinks } from './links.js';
 import { listaValidada, calculaStats } from './validate-stats.js';
 
-const caminho = process.argv;
-
-function imprimeLista(valida, resultado) {
-  if (caminho.includes('--stats') && caminho.includes('--validate')) {
+function imprimeLista(argumentos, resultado) {
+  if (argumentos.stats && argumentos.validate) {
     listaValidada(resultado).then((links) => {
       const stats = calculaStats(links);
       // eslint-disable-next-line prefer-template
       console.log(chalk.ansi256(21).bold(`Total: ${stats.total}`) + '\n' + chalk.ansi256(93).bold(`Unique: ${stats.unique}`) + '\n' + chalk.redBright.bold(`Broken: ${stats.broken}`));
     });
-  } else if (caminho.includes('--stats')) {
+  } else if (argumentos.stats) {
     listaValidada(resultado).then((link) => {
       const stats = calculaStats(link);
       // eslint-disable-next-line prefer-template
       console.log(chalk.ansi256(21).bold(`Total: ${stats.total}`) + '\n' + chalk.ansi256(93).bold(`Unique: ${stats.unique}`));
     });
-  } else if (valida) {
+  } else if (argumentos.validate) {
     listaValidada(resultado).then((linha) => {
       linha.forEach((link) => {
         console.log(
@@ -37,23 +34,20 @@ function imprimeLista(valida, resultado) {
 }
 
 function processaTexto(argumentos) {
-  const caminhoArgumento = argumentos[2];
-  const valida = argumentos[3] === '--validate';
-
+  const { caminho } = argumentos;
   try {
-    fs.lstatSync(caminhoArgumento);
+    fs.lstatSync(caminho);
   } catch (erro) {
     if (erro.code === 'ENOENT') {
       console.log('arquivo ou diretório não existe');
       return;
     }
   }
-  if (fs.lstatSync(caminhoArgumento).isFile()) {
-    extraiLinks(argumentos[2])
+  if (fs.lstatSync(caminho).isFile()) {
+    extraiLinks(argumentos.caminho)
       .then((resultado) => {
-        imprimeLista(valida, resultado);
+        imprimeLista(argumentos, resultado);
       })
-
       .catch((erro) => {
         console.error('Erro ao processar o arquivo', erro);
       });
@@ -63,7 +57,7 @@ function processaTexto(argumentos) {
         arquivos.forEach((nomeDeArquivo) => {
           extraiLinks(`${caminho}/${nomeDeArquivo}`)
             .then((lista) => {
-              imprimeLista(valida, lista, nomeDeArquivo);
+              imprimeLista(argumentos, lista, nomeDeArquivo);
             });
         });
       })
@@ -72,7 +66,5 @@ function processaTexto(argumentos) {
       });
   }
 }
-
-processaTexto(caminho);
 
 export { imprimeLista, processaTexto };
