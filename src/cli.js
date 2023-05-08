@@ -1,6 +1,5 @@
-import fs from 'fs';
+// import fs from 'fs';
 import chalk from 'chalk';
-import { extraiLinks } from './links.js';
 import { listaValidada, calculaStats } from './validate-stats.js';
 
 function imprimeLista(argumentos, resultado) {
@@ -33,38 +32,4 @@ function imprimeLista(argumentos, resultado) {
   }
 }
 
-function processaTexto(argumentos) {
-  const { caminho } = argumentos;
-  try {
-    fs.lstatSync(caminho);
-  } catch (erro) {
-    if (erro.code === 'ENOENT') {
-      console.log('arquivo ou diretório não existe');
-      return;
-    }
-  }
-  if (fs.lstatSync(caminho).isFile()) {
-    extraiLinks(argumentos.caminho)
-      .then((resultado) => {
-        imprimeLista(argumentos, resultado);
-      })
-      .catch((erro) => {
-        console.error('Erro ao processar o arquivo', erro);
-      });
-  } else if (fs.lstatSync(caminho).isDirectory()) {
-    fs.promises.readdir(caminho)
-      .then((arquivos) => {
-        arquivos.forEach((nomeDeArquivo) => {
-          extraiLinks(`${caminho}/${nomeDeArquivo}`)
-            .then((lista) => {
-              imprimeLista(argumentos, lista, nomeDeArquivo);
-            });
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-}
-
-export { imprimeLista, processaTexto };
+export { imprimeLista };

@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import fs from 'fs';
+import { imprimeLista } from './cli.js';
 
 function trataErro(erro) {
   throw new Error(chalk.red(erro.code, 'não há arquivo no diretório'));
@@ -23,4 +24,37 @@ function extraiLinks(caminhoDoArquivo) {
     .catch((erro) => trataErro(erro));
 }
 
-export { extraiLinks, trataErro };
+function mdLinks(argumentos) {
+  const { caminho } = argumentos;
+  try {
+    fs.lstatSync(caminho);
+  } catch (erro) {
+    if (erro.code === 'ENOENT') {
+      console.log('arquivo ou diretório não existe');
+      return;
+    }
+  }
+  if (fs.lstatSync(caminho).isFile()) {
+    extraiLinks(argumentos.caminho)
+      .then((resultado) => {
+        imprimeLista(argumentos, resultado);
+      })
+      .catch((erro) => {
+        console.error('Erro ao processar o arquivo', erro);
+      });
+  } else if (fs.lstatSync(caminho).isDirectory()) {
+    fs.promises.readdir(caminho)
+      .then((arquivos) => {
+        arquivos.forEach((nomeDeArquivo) => {
+          extraiLinks(`${caminho}/${nomeDeArquivo}`)
+            .then((lista) => {
+              imprimeLista(argumentos, lista, nomeDeArquivo);
+            });
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+}
+export { mdLinks, trataErro, extraiLinks };

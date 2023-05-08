@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { processaTexto } from './cli.js';
+import { mdLinks } from './links.js';
 
 const parametros = {
   caminho: process.argv[2],
@@ -7,4 +7,4 @@ const parametros = {
   validate: process.argv.includes('--validate'),
 };
 
-processaTexto(parametros);
+mdLinks(parametros);
