@@ -1,8 +1,9 @@
 /* eslint-disable prefer-template */
 /* eslint-disable no-undef */
-import chalk from 'chalk';
-import { extraiLinks, trataErro } from '../src';
-// import { imprimeLista } from '../src/cli';
+// import chalk from 'chalk';
+// import fs from 'fs';
+import { extraiLinks } from '../src/links';
+// import { imprimeLista } from '../src/cli.js';
 // import { listaValidada, calculaStats } from '../src/validate-stats';
 
 // precica criar um arquivo.md teste dentro da pasta test
@@ -29,17 +30,5 @@ describe('extraiLinks', () => {
     return extraiLinks(caminhoDoArquivo).then((resultado) => {
       expect(resultado).toEqual(resultadoEsperado);
     });
-  });
-});
-
-describe('trataErro', () => {
-  it('deve ser uma função', () => {
-    expect(typeof trataErro).toBe('function');
-  });
-
-  it('deve lançar um erro com a mensagem correta', () => {
-    expect(() => {
-      trataErro({ code: 'ENOENT' });
-    }).toThrow('ENOENT não há arquivo no diretório');
   });
 });

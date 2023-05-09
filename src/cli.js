@@ -1,31 +1,20 @@
-#!/usr/bin/env node
-import fs from 'fs';
+// import fs from 'fs';
 import chalk from 'chalk';
-import { extraiLinks } from './index.js';
-import { listaValidada, calculaStats } from './validate-stats.js';
+import { calculaStats } from './validate-stats.js';
 
-const caminho = process.argv;
-
-function imprimeLista(valida, resultado) {
-  if (caminho.includes('--stats') && caminho.includes('--validate')) {
-    listaValidada(resultado).then((links) => {
-      const stats = calculaStats(links);
-      // eslint-disable-next-line prefer-template
-      console.log(chalk.ansi256(21).bold(`Total: ${stats.total}`) + '\n' + chalk.ansi256(93).bold(`Unique: ${stats.unique}`) + '\n' + chalk.redBright.bold(`Broken: ${stats.broken}`));
-    });
-  } else if (caminho.includes('--stats')) {
-    listaValidada(resultado).then((link) => {
-      const stats = calculaStats(link);
-      // eslint-disable-next-line prefer-template
-      console.log(chalk.ansi256(21).bold(`Total: ${stats.total}`) + '\n' + chalk.ansi256(93).bold(`Unique: ${stats.unique}`));
-    });
-  } else if (valida) {
-    listaValidada(resultado).then((linha) => {
-      linha.forEach((link) => {
-        console.log(
-          `${chalk.ansi256(218).bold(link.file)} | ${chalk.ansi256(56).bold(link.href)} | ${chalk.ansi256(255).bold(link.text)} | ${link.status}`,
-        );
-      });
+function imprimeLista(argumentos, resultado) {
+  if (argumentos.stats && argumentos.validate) {
+    const stats = calculaStats(resultado);
+    console.log(`${chalk.ansi256(21).bold(`Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`Unique: ${stats.unique}`)}\n${chalk.redBright.bold(`Broken: ${stats.broken}`)}`);
+  } else if (argumentos.stats) {
+    const stats = calculaStats(resultado);
+    console.log('Estatística dos Links:');
+    console.log(`${chalk.ansi256(21).bold(`Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`Unique: ${stats.unique}`)}`);
+  } else if (argumentos.validate) {
+    resultado.forEach((link) => {
+      console.log(
+        `${chalk.ansi256(218).bold(link.file)} | ${chalk.ansi256(56).bold(link.href)} | ${chalk.ansi256(255).bold(link.text)} | ${link.status}`,
+      );
     });
   } else {
     resultado.forEach((link) => {
@@ -36,43 +25,4 @@ function imprimeLista(valida, resultado) {
   }
 }
 
-function processaTexto(argumentos) {
-  const caminhoArgumento = argumentos[2];
-  const valida = argumentos[3] === '--validate';
-
-  try {
-    fs.lstatSync(caminhoArgumento);
-  } catch (erro) {
-    if (erro.code === 'ENOENT') {
-      console.log('arquivo ou diretório não existe');
-      return;
-    }
-  }
-  if (fs.lstatSync(caminhoArgumento).isFile()) {
-    extraiLinks(argumentos[2])
-      .then((resultado) => {
-        imprimeLista(valida, resultado);
-      })
-
-      .catch((erro) => {
-        console.error('Erro ao processar o arquivo', erro);
-      });
-  } else if (fs.lstatSync(caminho).isDirectory()) {
-    fs.promises.readdir(caminho)
-      .then((arquivos) => {
-        arquivos.forEach((nomeDeArquivo) => {
-          extraiLinks(`${caminho}/${nomeDeArquivo}`)
-            .then((lista) => {
-              imprimeLista(valida, lista, nomeDeArquivo);
-            });
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-}
-
-processaTexto(caminho);
-
-export { imprimeLista, processaTexto };
+export { imprimeLista };

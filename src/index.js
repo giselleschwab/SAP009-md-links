@@ -1,26 +1,10 @@
-import chalk from 'chalk';
-import fs from 'fs';
+#!/usr/bin/env node
+import { mdLinks } from './links.js';
 
-function trataErro(erro) {
-  throw new Error(chalk.red(erro.code, 'não há arquivo no diretório'));
-}
+const parametros = {
+  caminho: process.argv[2],
+  stats: process.argv.includes('--stats'),
+  validate: process.argv.includes('--validate'),
+};
 
-function extraiLinks(caminhoDoArquivo) {
-  const encoding = 'utf-8';
-  const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)/gm;
-
-  return fs.promises
-    .readFile(caminhoDoArquivo, encoding)
-    .then((texto) => {
-      const capturas = [...texto.matchAll(regex)];
-      const resultados = capturas.map((captura) => ({
-        href: captura[2],
-        text: captura[1],
-        file: caminhoDoArquivo,
-      }));
-      return resultados;
-    })
-    .catch((erro) => trataErro(erro));
-}
-
-export { extraiLinks, trataErro };
+mdLinks(parametros);
