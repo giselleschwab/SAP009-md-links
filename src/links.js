@@ -1,10 +1,7 @@
-import chalk from 'chalk';
 import fs from 'fs';
 import { imprimeLista } from './cli.js';
-
-function trataErro(erro) {
-  throw new Error(chalk.red(erro.code, 'não há arquivo no diretório'));
-}
+import { trataErro, arquivoNaoExiste, erroArquivo } from './erros.js';
+import { listaValidada } from './validate-stats.js';
 
 function extraiLinks(caminhoDoArquivo) {
   const encoding = 'utf-8';
@@ -19,7 +16,7 @@ function extraiLinks(caminhoDoArquivo) {
         text: captura[1],
         file: caminhoDoArquivo,
       }));
-      return resultados;
+      return resultados.length !== 0 ? resultados : 'não há links no arquivo';
     })
     .catch((erro) => trataErro(erro));
 }
@@ -29,19 +26,20 @@ function mdLinks(argumentos) {
   try {
     fs.lstatSync(caminho);
   } catch (erro) {
-    if (erro.code === 'ENOENT') {
-      console.log('arquivo ou diretório não existe');
-      return;
-    }
+    arquivoNaoExiste(erro);
   }
   if (fs.lstatSync(caminho).isFile()) {
     extraiLinks(argumentos.caminho)
       .then((resultado) => {
+        if (argumentos.validate || argumentos.stats) {
+          return listaValidada(resultado);
+        }
+        return resultado;
+      })
+      .then((resultado) => {
         imprimeLista(argumentos, resultado);
       })
-      .catch((erro) => {
-        console.error('Erro ao processar o arquivo', erro);
-      });
+      .catch((erro) => erroArquivo(erro));
   } else if (fs.lstatSync(caminho).isDirectory()) {
     fs.promises.readdir(caminho)
       .then((arquivos) => {

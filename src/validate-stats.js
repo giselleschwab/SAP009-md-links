@@ -1,14 +1,13 @@
 import chalk from 'chalk';
-// lista que só tenha urls
-function extraiLinks(arrLinks) {
-  return arrLinks.map((objetoLink) => objetoLink.href);
-}
+import { manejaErros } from './erros.js';
 
-function manejaErros(erro) {
-  if (erro.cause.code === 'ENOTFOUND') {
-    return chalk.ansi256(196).bold.italic('\u2717 link não encontrado\u2717');
-  }
-  return 'ocorreu algum erro';
+function extraiLinks(arrLinks) {
+  return arrLinks.map((objetoLink) => {
+    if (!objetoLink.href) {
+      throw new Error('Objeto de link não contém uma propriedade href.');
+    }
+    return objetoLink.href;
+  });
 }
 
 function checkStatus(listaURLs) {
