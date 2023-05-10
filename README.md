@@ -25,10 +25,14 @@ A execução do módulo ocorre através do comando:
 
 Vai trazer o caminho, a lista e o nome dos links
 
+![2023-05-10 (1)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/dd7a88e6-b4b9-4d92-9cfc-60512b49ab84)
+
 
 md-links ./arquivo/nomeDoArquivo.md `--validate` :
 
-Ao inserir a flag --validate vai retornar a lista com os links válidos, os links inválidos e quais links não exitem.
+Ao inserir a flag --validate vai retornar os links com o status de válidos ou inválidos, e também os links não encontrados.
+
+![2023-05-10 (1)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/941b6457-dfde-448d-859f-1216df5bb7ed)
 
 
 md-links ./arquivo/nomeDoArquivo.md `--stats` :
