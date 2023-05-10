@@ -22,12 +22,15 @@ A execução do módulo ocorre através da execução do seguinte comando:
 Vai trazer o caminho, a lista e o nome dos links
 
 - md-links ./arquivo/nomeDoArquivo.md `--validate` :
+
 Ao inserir a flag --validate vai retornar a lista com os links válidos, os links inválidos e quais links não exitem.
 
 - md-links ./arquivo/nomeDoArquivo.md `--stats` :
+
 Ao inserir a flag --stats vai retornar a estatística dos links, mostrando o total de link e os links únicos.
 
 - md-links ./arquivo/nomeDoArquivo.md `--stats --validate`: 
+
 Ao inserir as flags --stats e --validate vai retornar a estatística dos links juntamente com os links que estão quebrados.
 
 
