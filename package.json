@@ -1,7 +1,7 @@
 {
-  "name": "md-links-giselleschwab",
+  "name": "md-links-laboratoria-gss",
   "version": "0.1.0",
-  "description": "Md Links - Projeto Laboratoria",
+  "description": "Pacote para validação de links em arquivos markdown (.md)",
   "main": "index.js",
   "type": "module",
   "engines": {
