@@ -1,13 +1,8 @@
 import chalk from 'chalk';
 import { manejaErros } from './erros.js';
 
-function extraiLinks(arrLinks) {
-  return arrLinks.map((objetoLink) => {
-    if (!objetoLink.href) {
-      throw new Error('Objeto de link não contém uma propriedade href.');
-    }
-    return objetoLink.href;
-  });
+function extrairLinks(arrayLinks) {
+  return arrayLinks.map((objetoLink) => objetoLink.href);
 }
 
 function checkStatus(listaURLs) {
@@ -42,11 +37,16 @@ function calculaStats(links) {
 }
 
 function listaValidada(listaDeLinks) {
-  const links = extraiLinks(listaDeLinks);
+  const links = extrairLinks(listaDeLinks);
   return checkStatus(links).then((status) => listaDeLinks.map((objeto, indice) => ({
     ...objeto,
     status: status[indice],
   })));
 }
 
-export { checkStatus, listaValidada, calculaStats };
+export {
+  extrairLinks,
+  checkStatus,
+  listaValidada,
+  calculaStats,
+};

@@ -8,7 +8,6 @@ function imprimeLista(argumentos, resultado) {
     console.log(`${chalk.ansi256(21).bold(`Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`Unique: ${stats.unique}`)}\n${chalk.redBright.bold(`Broken: ${stats.broken}`)}`);
   } else if (argumentos.stats) {
     const stats = calculaStats(resultado);
-    console.log('Estatística dos Links:');
     console.log(`${chalk.ansi256(21).bold(`Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`Unique: ${stats.unique}`)}`);
   } else if (argumentos.validate) {
     resultado.forEach((link) => {
