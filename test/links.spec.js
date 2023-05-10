@@ -1,10 +1,6 @@
 /* eslint-disable prefer-template */
 /* eslint-disable no-undef */
-// import chalk from 'chalk';
-// import fs from 'fs';
-import { extraiLinks } from '../src/links';
-// import { imprimeLista } from '../src/cli.js';
-// import { listaValidada, calculaStats } from '../src/validate-stats';
+import { extraiLinks } from '../src/links.js';
 
 // precica criar um arquivo.md teste dentro da pasta test
 describe('extraiLinks', () => {
