@@ -32,7 +32,8 @@ md-links ./arquivo/nomeDoArquivo.md `--validate` :
 
 Ao inserir a flag --validate vai retornar os links com o status de válidos ou inválidos, e também os links não encontrados.
 
-![2023-05-10 (1)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/941b6457-dfde-448d-859f-1216df5bb7ed)
+![2023-05-10 (2)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/5b8e1c4a-7456-41fc-aa65-46a57088cdf1)
+
 
 
 md-links ./arquivo/nomeDoArquivo.md `--stats` :
