@@ -14,9 +14,10 @@ e que foi implementado em JavaScript para serem executadas com Node.JS.
 
 
 ## 2. Funcionalidades
-A execução do módulo ocorre através da execução do seguinte comando: npm install md-links-laboratoria-gss
+A execução do módulo ocorre através da execução do seguinte comando:
+`npm install md-links-laboratoria-gss`
 
-Comando:
+### Comandos:
 `md-links ./arquivo/nomeDoArquivo.md`
 Vai trazer o caminho, a lista e o nome dos links
 
