@@ -25,8 +25,7 @@ A execução do módulo ocorre através do comando:
 
 Vai trazer o caminho, a lista e o nome dos links
 
-![2023-05-10 (1)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/0f07158c-8ec1-4392-a114-653a44318f32)
-
+![2023-05-10 (1)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/17eba0df-8d81-43cc-973c-4da7920c7a8e)
 
 
 md-links ./arquivo/nomeDoArquivo.md `--validate` :
