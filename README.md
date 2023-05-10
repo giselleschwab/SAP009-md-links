@@ -54,5 +54,10 @@ Ao inserir as flags --stats e --validate vai retornar a estatística dos links j
 
 ## 3. Ferramentas utilizadas
 
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30px";/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="30px";/>
+</div>
+
 
 
