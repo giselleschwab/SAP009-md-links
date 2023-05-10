@@ -17,7 +17,7 @@ describe('trataErro', () => {
 describe('arquivoNaoExiste', () => {
   it('deve imprimir a mensagem de erro para um erro ENOENT', () => {
     const erro = { code: 'ENOENT' };
-    const consoleSpy = jest.spyOn(console, 'log');
+    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
     arquivoNaoExiste(erro);
     expect(consoleSpy).toHaveBeenCalledWith(chalk.redBright.bold('arquivo ou diretório não existe'));
   });

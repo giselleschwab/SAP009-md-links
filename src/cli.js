@@ -5,7 +5,7 @@ import { calculaStats } from './validate-stats.js';
 function imprimeLista(argumentos, resultado) {
   if (argumentos.stats && argumentos.validate) {
     const stats = calculaStats(resultado);
-    console.log(`${chalk.ansi256(21).bold(`Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`Unique: ${stats.unique}`)}\n${chalk.redBright.bold(`Broken: ${stats.broken}`)}`);
+    console.log(`${chalk.ansi256(21).bold(`\u2606 Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`\u2605 Unique: ${stats.unique}`)}\n${chalk.redBright.bold(`\u{1F5F2} Broken: ${stats.broken}`)}`);
   } else if (argumentos.stats) {
     const stats = calculaStats(resultado);
     console.log(`${chalk.ansi256(21).bold(`Total: ${stats.total}`)}\n${chalk.ansi256(93).bold(`Unique: ${stats.unique}`)}`);

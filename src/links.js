@@ -16,7 +16,7 @@ function extraiLinks(caminhoDoArquivo) {
         text: captura[1],
         file: caminhoDoArquivo,
       }));
-      return resultados.length !== 0 ? resultados : 'não há links no arquivo';
+      return resultados;
     })
     .catch((erro) => trataErro(erro));
 }
