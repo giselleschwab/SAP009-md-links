@@ -14,7 +14,8 @@ e que foi implementado em JavaScript para serem executadas com Node.JS.
 
 
 ## 2. Funcionalidades
-A execução do módulo ocorre através da execução do seguinte comando:
+A execução do módulo ocorre através do comando:
+
 `npm install md-links-laboratoria-gss`
 ![2023-05-10](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/6629f996-69fc-4873-9bed-91790ce80861)
 
