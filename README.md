@@ -40,14 +40,15 @@ md-links ./arquivo/nomeDoArquivo.md `--stats` :
 
 Ao inserir a flag --stats vai retornar a estatística dos links, mostrando o total de link e os links únicos.
 
-![2023-05-10 (3)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/044182b1-c27f-4df1-be27-68ccac4b0833)
+![2023-05-10 (3)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/027d2d3b-ec1a-46d7-bde6-d65f4b985bc9)
+
 
 
 md-links ./arquivo/nomeDoArquivo.md `--stats --validate`: 
 
 Ao inserir as flags --stats e --validate vai retornar a estatística dos links juntamente com os links que estão quebrados.
 
-
+![2023-05-10 (4)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/23e23621-ab98-411a-af84-134138510cb8)
 
 
 ## 3. Checklist
