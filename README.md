@@ -40,6 +40,8 @@ md-links ./arquivo/nomeDoArquivo.md `--stats` :
 
 Ao inserir a flag --stats vai retornar a estatística dos links, mostrando o total de link e os links únicos.
 
+![2023-05-10 (3)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/044182b1-c27f-4df1-be27-68ccac4b0833)
+
 
 md-links ./arquivo/nomeDoArquivo.md `--stats --validate`: 
 
