@@ -1,10 +1,20 @@
 # Markdown Links
 
+<div>
+  <p> Ferramentas utilizadas </p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="30px";/> 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30px";/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="30px";/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" height="30px";/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="30px";/>   
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" height="30px";/>  
+</div>
+
 ## Índice
 
 * [1. Resumo do projeto](#1-resumo-do-projeto)
 * [2. Funcionalidades](#2-funcionalidades)
-* [3. Ferramentas utilizadas](#3-ferramentas)
+* [3. Desenvolvedora](#3-Desenvolvedora)
 
 ***
 
@@ -51,16 +61,9 @@ Ao inserir as flags --stats e --validate vai retornar a estatística dos links j
 ![2023-05-10 (4)](https://github.com/giselleschwab/SAP009-md-links/assets/118859853/be2f5d41-73ed-44c4-b093-b29c5ee809e7)
 
 
-
-## 3. Ferramentas utilizadas
-<div>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="30px";/> 
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30px";/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="30px";/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" height="30px";/>
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="30px";/>   
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" height="30px";/>  
-</div>
-
+## 3. Funcionalidades
+Giselle Schwab Silva  [![Linkedin](https://i.stack.imgur.com/gVE0j.png)Linkedin](https://www.linkedin.com/in/giselle-schwab-silva-58930610a/)
+&nbsp;
+[![GitHub](https://i.stack.imgur.com/tskMh.png)GitHub](https://github.com/giselleschwab)
 
 
